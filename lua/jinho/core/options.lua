@@ -22,8 +22,10 @@ opt.ignorecase = true
 opt.smartcase = true
 
 -- cursor line
-opt.cursorline = true -- Highlights the current line in the editor
-opt.winblend = 0
+opt.cul = true -- Highlights the current line in the editor
+opt.culopt = "number" -- Highlight the line number
+-- vim.highlight = "CursorLineNr" -- Highlight the line number
+-- opt.winblend = 0
 -- opt.wildoptions = "pum"
 -- opt.pumblend = 5
 -- opt.background = "dark"

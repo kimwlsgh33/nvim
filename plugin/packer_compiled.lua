@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/Users/gimjinho/.local/share/nvim/site/pack/packer/start/coc.nvim",
     url = "https://github.com/neoclide/coc.nvim"
   },
+  ["command-completion.nvim"] = {
+    loaded = true,
+    path = "/Users/gimjinho/.local/share/nvim/site/pack/packer/start/command-completion.nvim",
+    url = "https://github.com/smolck/command-completion.nvim"
+  },
   ["copilot.vim"] = {
     loaded = true,
     path = "/Users/gimjinho/.local/share/nvim/site/pack/packer/start/copilot.vim",

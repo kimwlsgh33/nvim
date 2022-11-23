@@ -113,6 +113,7 @@ return packer.startup(function(use)
 	use({ "neoclide/coc.nvim", branch = "release" })
 	-- use("mfussenegger/nvim-jdtls")
 	use("github/copilot.vim")
+	use("smolck/command-completion.nvim")
 
 	if packer_bootstrap then
 		require("packer").sync()

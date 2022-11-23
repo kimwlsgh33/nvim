@@ -15,6 +15,7 @@ require("jinho.plugins.lsp.null-ls")
 require("jinho.plugins.autopaires")
 require("jinho.plugins.treesitter")
 require("jinho.plugins.gitsigns")
+require("jinho.plugins.command-cmp")
 -- require("jinho.plugins.java")
 
 local has = function(x)
