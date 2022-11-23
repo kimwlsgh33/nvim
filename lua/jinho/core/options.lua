@@ -6,7 +6,7 @@ opt.encoding = "utf-8"
 
 -- line numbers
 opt.number = true -- Shows the line numbers
-opt.relativenumber = false
+opt.relativenumber = true
 
 -- tabs & indent
 opt.tabstop = 2
