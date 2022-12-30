@@ -31,11 +31,8 @@ treesitter.setup({
 		"vim",
 		"dockerfile",
 		"gitignore",
-		"clojure",
-		"erlang",
 		"rust",
 		"java",
-		"scala",
 		"sql",
 	},
 	-- auto install above language parsers

@@ -1,3 +1,6 @@
+-- 클라이언트 기능 설정, LSP서버에 편집기 정보 전달
+
+
 -- import lspconfig plugin safely
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status then
@@ -10,126 +13,66 @@ if not cmp_nvim_lsp_status then
 	return
 end
 
--- import typescript plugin safely
-local typescript_setup, typescript = pcall(require, "typescript")
-if not typescript_setup then
-	return
-end
+-- get lsp_default_config
+local lsp_defaults = lspconfig.util.default_config
 
-local keymap = vim.keymap -- for conciseness
+-- combine lspconfig and cmp-nvim-lsp
+lsp_defaults.capabilities = vim.tbl_deep_extend("force", lsp_defaults.capabilities, cmp_nvim_lsp.default_capabilities())
 
--- enable keybinds only for when lsp server available
-local on_attach = function(client, bufnr)
-	-- keybind options
-	local opts = { noremap = true, silent = true, buffer = bufnr }
+-- search lspconfig : :help lspconfig-setup
 
-	-- set keybinds
-	keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
-	keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
-	keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
-	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
-	keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
-	keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
-	keymap.set("n", "<leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
-	keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
-	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
-	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
-	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
-	keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
-
-	-- typescript specific keymaps (e.g. rename file and update imports)
-	if client.name == "tsserver" then
-		keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
-		keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports (not in youtube nvim video)
-		keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables (not in youtube nvim video)
-	end
-end
-
--- used to enable autocompletion (assign to every lsp server config)
-local capabilities = cmp_nvim_lsp.default_capabilities()
-
--- Change the Diagnostic symbols in the sign column (gutter)
--- (not in youtube nvim video)
-local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
-
--- configure html server
-lspconfig["html"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
--- configure typescript server with plugin
-typescript.setup({
-	server = {
-		capabilities = capabilities,
-		on_attach = on_attach,
+-- set sumneko_lua lsp
+lspconfig.sumneko_lua.setup({
+	single_file_support = true,
+	flags = {
+		debounce_text_changes = 150,
 	},
 })
 
--- configure css server
-lspconfig["cssls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
+-- set LspAttach binding
+vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "LSP actions",
+	callback = function()
+		local bufmap = function(mode, lhs, rhs)
+			local opts = { buffer = true }
+			vim.keymap.set(mode, lhs, rhs, opts)
+		end
 
--- configure tailwindcss server
-lspconfig["tailwindcss"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
+		-- Displays hover information about the symbol under the cursor
+		bufmap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
 
--- configure emmet language server
-lspconfig["emmet_ls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-})
+		-- Jump to the definition
+		bufmap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 
--- configure lua server (with special settings)
-lspconfig["sumneko_lua"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	settings = { -- custom settings for lua
-		Lua = {
-			-- make the language server recognize "vim" global
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				-- make language server aware of runtime files
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
-				},
-			},
-		},
-	},
-})
+		-- Jump to the declaration
+		bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
 
--- configure java server
-lspconfig["jdtls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
+		-- Lists all the implementations for the symbol under the cursor
+		bufmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 
--- configure sql server
-lspconfig["sqls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
+		-- Jumps to the definition of the type symbol
+		bufmap("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
 
--- configure erlang server
--- lspconfig["erlangls"].setup({
--- 	capabilities = capabilities,
--- 	on_attach = on_attach,
--- })
+		-- Lists all the references
+		bufmap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
 
--- configure clojure server
-lspconfig["clojure_lsp"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
+		-- Displays a function's signature information
+		bufmap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+
+		-- Renames the symbol under the cursor
+		bufmap("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>")
+
+		-- Selects a code action available at the currnet cursor position
+		bufmap("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+		bufmap("n", "<F4>", "<cmd>lua vim.lsp.buf.range_code_action()<CR>")
+
+		-- show diagnostics in a floating window
+		bufmap("n", "gl", "<cmd>lua vim.lsp.diagnostic.open_float()<CR>")
+
+		-- Move to the previous diagnostic
+		bufmap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
+
+		-- Move to the next diagnostic
+		bufmap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
+	end,
 })

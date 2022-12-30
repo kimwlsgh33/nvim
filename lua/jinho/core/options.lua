@@ -28,7 +28,7 @@ opt.culopt = "number" -- Highlight the line number
 -- opt.winblend = 0
 -- opt.wildoptions = "pum"
 -- opt.pumblend = 5
--- opt.background = "dark"
+opt.background = "dark"
 --
 -- appearance
 opt.termguicolors = true

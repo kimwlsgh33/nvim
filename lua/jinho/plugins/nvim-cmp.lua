@@ -19,7 +19,8 @@ end
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
 require("luasnip/loaders/from_vscode").lazy_load()
 
-vim.opt.completeopt = "menu,menuone,noselect"
+local select_opts = { behavior = cmp.SelectBehavior.Select }
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 cmp.setup({
 	snippet = {
@@ -30,19 +31,42 @@ cmp.setup({
 	mapping = cmp.mapping.preset.insert({
 		["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
 		["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
-		["<C-b>"] = cmp.mapping.scroll_docs(-4),
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
 		["<C-e>"] = cmp.mapping.abort(), -- close completion window
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
+		----
+		["<Up>"] = cmp.mapping.select_prev_item(select_opts),
+		["<Down>"] = cmp.mapping.select_next_item(select_opts),
+		["<C-p>"] = cmp.mapping.select_prev_item(select_opts),
+		["<C-n>"] = cmp.mapping.select_next_item(select_opts),
+		["<C-d>"] = cmp.mapping(function(fallback)
+			if luasnip.jumpable(1) then
+				luasnip.jump(1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 	}),
 	-- sources for autocompletion
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" }, -- lsp
-		-- { name = "luasnip" }, -- snippets
-		{ name = "buffer" }, -- text within current buffer
+		{ name = "nvim_lsp", keyword_length = 3 }, -- lsp server
+		{ name = "luasnip" }, -- snippets
+		{ name = "buffer" }, -- buffer
+		{ name = "path" }, -- path
+		{ name = "calc" }, -- calculator
+		{ name = "nvim_lua" }, -- lua
+		{ name = "emoji" }, -- emoji
+		{ name = "treesitter" }, -- treesitter
+		{ name = "luasnip", keyword_length = 2 }, -- snippets
+		{ name = "buffer", keyword_length = 3 }, -- text within current buffer
 		{ name = "path" }, -- file system paths
 	}),
+	-- window options
+	window = {
+		documentation = cmp.config.window.bordered(),
+	},
 	-- configure lspkind for vs-code like icons
 	formatting = {
 		format = lspkind.cmp_format({
@@ -51,3 +75,18 @@ cmp.setup({
 		}),
 	},
 })
+
+-- 설명창 추가
+vim.diagnostic.config({
+	virtual_text = false,
+	serverity_sort = true,
+	float = {
+		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = "",
+	},
+})
+
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.signatureHelp, { border = "rounded" })
