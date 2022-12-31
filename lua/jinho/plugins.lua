@@ -34,16 +34,13 @@ return packer.startup(function(use)
 
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
-  use {'nyoom-engineering/oxocarbon.nvim'}
-  use 'B4mbus/oxocarbon-lua.nvim'
-
-	use("navarasu/onedark.nvim")
-  -- If you are using Packer
-use 'marko-cerovac/material.nvim'
-
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
 	use("szw/vim-maximizer") -- maximizes and restores current window
+
+  -- colorscheme
+  use("folke/tokyonight.nvim")
+  use 'navarasu/onedark.nvim'
 
 	-- essential plugins
 	use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome) (ys + motion)
@@ -51,6 +48,9 @@ use 'marko-cerovac/material.nvim'
 
 	-- commenting with gc
 	use("numToStr/Comment.nvim")
+
+  -- startup screen
+  use('glepnir/dashboard-nvim')
 
 	-- file explorer
 	-- use("nvim-tree/nvim-tree.lua")

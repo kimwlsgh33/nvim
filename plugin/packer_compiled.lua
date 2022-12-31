@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/Users/gimjinho/.local/share/nvim/site/pack/packer/start/copilot.vim",
     url = "https://github.com/github/copilot.vim"
   },
+  ["dashboard-nvim"] = {
+    loaded = true,
+    path = "/Users/gimjinho/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
+    url = "https://github.com/glepnir/dashboard-nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/Users/gimjinho/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -153,11 +158,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/gimjinho/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
-  },
-  ["material.nvim"] = {
-    loaded = true,
-    path = "/Users/gimjinho/.local/share/nvim/site/pack/packer/start/material.nvim",
-    url = "https://github.com/marko-cerovac/material.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -206,16 +206,6 @@ _G.packer_plugins = {
     path = "/Users/gimjinho/.local/share/nvim/site/pack/packer/start/onedark.nvim",
     url = "https://github.com/navarasu/onedark.nvim"
   },
-  ["oxocarbon-lua.nvim"] = {
-    loaded = true,
-    path = "/Users/gimjinho/.local/share/nvim/site/pack/packer/start/oxocarbon-lua.nvim",
-    url = "https://github.com/B4mbus/oxocarbon-lua.nvim"
-  },
-  ["oxocarbon.nvim"] = {
-    loaded = true,
-    path = "/Users/gimjinho/.local/share/nvim/site/pack/packer/start/oxocarbon.nvim",
-    url = "https://github.com/nyoom-engineering/oxocarbon.nvim"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/gimjinho/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -235,6 +225,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/gimjinho/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/Users/gimjinho/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
   ["typescript.nvim"] = {
     loaded = true,

@@ -1,6 +1,8 @@
 require("jinho.plugins")
 require("jinho.core.options")
 require("jinho.core.keymaps")
+-- require("jinho.plugins.start-up")
+require("jinho.plugins.dashboard")
 require("jinho.plugins.comment")
 require("jinho.plugins.nvim-tree")
 require("jinho.plugins.lualine")
