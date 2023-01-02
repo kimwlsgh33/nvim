@@ -26,6 +26,7 @@ null_ls.setup({
 				return utils.root_has_file(".eslintrc.js") -- change file extension if you use something else
 			end,
 		}),
+    diagnostics.markdownlint, -- markdown linter
 		-- diagnostics.pmd.with({
 		-- 	extra_args = {
 		-- 		"--rulesets",

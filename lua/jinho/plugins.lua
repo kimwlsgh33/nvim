@@ -52,6 +52,9 @@ return packer.startup(function(use)
   -- startup screen
   use('glepnir/dashboard-nvim')
 
+  -- toggle terminal
+  use("akinsho/toggleterm.nvim")
+
 	-- file explorer
 	-- use("nvim-tree/nvim-tree.lua")
 	-- vs-code like icons
@@ -70,6 +73,12 @@ return packer.startup(function(use)
 	-- fuzzy finding w/ telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
+
+  -- lsp manager
+  use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+  }
 
 	-- autocompletion & snippets
 	use("L3MON4D3/LuaSnip") -- snippet engine
@@ -95,10 +104,6 @@ return packer.startup(function(use)
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
 	-- formatting & linting
-use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-}
 	-- treesitter configuration
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -116,10 +121,12 @@ use {
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
 	-- coc
-	use({ "neoclide/coc.nvim", branch = "release" })
+	-- use({ "neoclide/coc.nvim", branch = "release" })
 	use("github/copilot.vim")
 
 	use("smolck/command-completion.nvim")
+
+  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
 
 	if packer_bootstrap then
 		require("packer").sync()
