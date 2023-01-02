@@ -14,7 +14,7 @@ require("jinho.plugins.autopaires")
 require("jinho.plugins.lsp.lspsaga")
 require("jinho.plugins.lsp.null-ls")
 require("jinho.plugins.bufferline")
--- require("jinho.plugins.toggleterm")
+require("jinho.plugins.toggleterm")
 
 local has = function(x)
 	return vim.fn.has(x) == 1

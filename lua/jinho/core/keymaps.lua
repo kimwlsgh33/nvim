@@ -46,6 +46,8 @@ keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
 keymap.set("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>") -- list recently opened files
 keymap.set("n", "<leader>ft", "<cmd>Telescope tags<cr>") -- list tags in current working directory
+keymap.set("n", "<leader>od", "<cmd>e ~/.config/nvim/init.lua<cr>") -- open init.lua
+
 -- history
 keymap.set("n", "<leader>hc", "<cmd>Telescope command_history<cr>") -- list available commands
 keymap.set("n", "<leader>hs", "<cmd>Telescope search_history<cr>") -- list available commands
