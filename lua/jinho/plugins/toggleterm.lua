@@ -6,21 +6,27 @@ if not status then
 end
 
 toggleterm.setup({
-  size = 50,
-  open_mapping = [[<c-\>]],
+  function(term)
+    if term.direction == "horizontal" then
+      return 15
+    elseif term.direction == "vertical" then
+      return vim.o.columns * 0.4
+    end
+  end,
+  open_mapping = [[<C-t>]],
   hide_nubmers = true,
   shade_filetypes = {},
   shade_terminals = true,
-  shading_factor = 2,
+  -- shading_factor = 2,
   start_in_insert = true,
-  insert_mapping = true,
+  insert_mapping = true, -- if you want to be able to toggle a terminal in insert mode
   persist_size = true,
-  direction = "vertical",
+  direction = "horizontal",
   close_on_exit = true,
   shell = vim.o.shell,
   float_opts = {
     border = "curved",
-    winblend = 0,
+    winblend = 3,
     highlight = {
       border = "Normal",
       background = "Normal"
@@ -36,8 +42,6 @@ function _G.set_terminal_keymaps()
   vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
   vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
 end
-
-
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 local Terminal = require('toggleterm.terminal').Terminal
