@@ -38,9 +38,9 @@ return packer.startup(function(use)
 
 	use("szw/vim-maximizer") -- maximizes and restores current window
 
-  -- colorscheme
-  use("folke/tokyonight.nvim")
-  use 'navarasu/onedark.nvim'
+	-- colorscheme
+	use("folke/tokyonight.nvim")
+	use("navarasu/onedark.nvim")
 
 	-- essential plugins
 	use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome) (ys + motion)
@@ -49,11 +49,11 @@ return packer.startup(function(use)
 	-- commenting with gc
 	use("numToStr/Comment.nvim")
 
-  -- startup screen
-  use('glepnir/dashboard-nvim')
+	-- startup screen
+	use("glepnir/dashboard-nvim")
 
-  -- toggle terminal
-  use("akinsho/toggleterm.nvim")
+	-- toggle terminal
+	use("akinsho/toggleterm.nvim")
 
 	-- file explorer
 	-- use("nvim-tree/nvim-tree.lua")
@@ -74,11 +74,13 @@ return packer.startup(function(use)
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
 
-  -- lsp manager
-  use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-  }
+	-- lsp manager
+	use({
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+	})
+
+	use("jose-elias-alvarez/null-ls.nvim")
 
 	-- autocompletion & snippets
 	use("L3MON4D3/LuaSnip") -- snippet engine
@@ -126,7 +128,7 @@ return packer.startup(function(use)
 
 	use("smolck/command-completion.nvim")
 
-  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" })
 
 	if packer_bootstrap then
 		require("packer").sync()
