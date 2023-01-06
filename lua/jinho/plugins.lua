@@ -38,6 +38,14 @@ return packer.startup(function(use)
 
 	use("szw/vim-maximizer") -- maximizes and restores current window
 
+	-- Flutter
+	use({
+		"akinsho/flutter-tools.nvim",
+		config = function()
+			require("flutter-tools").setup()
+		end,
+	})
+
 	-- colorscheme
 	use("folke/tokyonight.nvim")
 	use("navarasu/onedark.nvim")

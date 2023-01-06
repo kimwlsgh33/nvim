@@ -103,7 +103,7 @@ lspconfig.html.setup({})
 -- lspconfig.cssls.setup({})
 lspconfig.sumneko_lua.setup({})
 lspconfig.pyright.setup({})
-lspconfig.dartls.setup({})
+-- lspconfig.dartls.setup({})
 
 ---
 -- Autocomplete

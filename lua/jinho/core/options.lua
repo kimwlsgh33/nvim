@@ -2,7 +2,7 @@ local opt = vim.opt -- for concisencess
 
 -- copilot
 vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.api.nvim_set_keymap("i", "<C-j>", "copilot#Accept()", { silent = true, expr = true })
 
 -- encoding
 opt.fileencoding = "utf-8"
