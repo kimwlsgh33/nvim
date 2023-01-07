@@ -39,12 +39,7 @@ return packer.startup(function(use)
 	use("szw/vim-maximizer") -- maximizes and restores current window
 
 	-- Flutter
-	use({
-		"akinsho/flutter-tools.nvim",
-		config = function()
-			require("flutter-tools").setup()
-		end,
-	})
+	use("akinsho/flutter-tools.nvim")
 
 	-- colorscheme
 	use("folke/tokyonight.nvim")
@@ -81,6 +76,7 @@ return packer.startup(function(use)
 	-- fuzzy finding w/ telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
+	use({ "nvim-telescope/telescope-dap.nvim" }) -- telescope extension for debugging
 
 	-- lsp manager
 	use({
@@ -91,17 +87,17 @@ return packer.startup(function(use)
 	use("jose-elias-alvarez/null-ls.nvim")
 
 	-- autocompletion & snippets
-	use("L3MON4D3/LuaSnip") -- snippet engine
-	use("hrsh7th/nvim-cmp") -- completion plugin
+	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
 	use("hrsh7th/cmp-buffer") -- source for text in buffer
 	use("hrsh7th/cmp-path") -- source for file system paths
-	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
+	use("hrsh7th/cmp-cmdline") -- for autocompletion
+	use("hrsh7th/nvim-cmp") -- completion plugin
+
+	-- for lua snippets
+	use("L3MON4D3/LuaSnip") -- snippet engine
 	use("saadparwaiz1/cmp_luasnip") -- for autocompletion
 	use("rafamadriz/friendly-snippets") -- useful snippets
 
-	-- managing & installing lsp servers, linters & formatters
-	-- use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
-	-- use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig ( configuration )
 	use({
 		"williamboman/nvim-lsp-installer",
 		"neovim/nvim-lspconfig",
@@ -112,6 +108,9 @@ return packer.startup(function(use)
 	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
 	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
+
+	-- debugging
+	use("mfussenegger/nvim-dap")
 
 	-- formatting & linting
 	-- treesitter configuration

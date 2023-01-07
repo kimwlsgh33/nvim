@@ -11,9 +11,11 @@ require("jinho.plugins.lsp.lspcmp")
 require("jinho.plugins.treesitter")
 require("jinho.plugins.gitsigns")
 require("jinho.plugins.autopaires")
-require("jinho.plugins.lsp.null-ls")
+-- require("jinho.plugins.lsp.null-ls")
 require("jinho.plugins.bufferline")
 require("jinho.plugins.toggleterm")
+require("jinho.plugins.flutter-tools")
+require("jinho.plugins.nvim-dap")
 
 local has = function(x)
 	return vim.fn.has(x) == 1

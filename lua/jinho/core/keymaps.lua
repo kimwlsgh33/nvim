@@ -46,8 +46,22 @@ keymap.set("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>") -- list recently op
 keymap.set("n", "<leader>ft", "<cmd>Telescope tags<cr>") -- list tags in current working directory
 keymap.set("n", "<leader>od", "<cmd>e ~/.config/nvim/init.lua<cr>") -- open init.lua
 
--- history
+-- history ( h )
 keymap.set("n", "<leader>hc", "<cmd>Telescope command_history<cr>") -- list available commands
 keymap.set("n", "<leader>hs", "<cmd>Telescope search_history<cr>") -- list available commands
+
 -- colorscheme
 keymap.set("n", "<leader>cs", "<cmd>Telescope colorscheme<cr>") -- list available colorschemes
+
+-- nvim-dap
+keymap.set("n", "<leader>dh", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")
+keymap.set("n", "<leader>dn", "<cmd>lua require'dap'.continue()<cr>")
+keymap.set("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>")
+keymap.set("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>")
+keymap.set("n", "<leader>dr", "<cmd>lua require'dap'.repl.open({},'vsplit')<cr><C-w>l")
+keymap.set("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>")
+-- keymap.set("n", "<leader>dv", "<cmd>lua require'dap.ui.variables'.hover()<cr>")
+-- keymap.set("n", "<leader>d?", "<cmd>lua require'dap.ui.variables'.scopes()<cr>")
+keymap.set("n", "<leader>de", "<cmd>lua require'dap'.set_exception_breakpoints({'all'})<cr>")
+keymap.set("n", "<leader>df", "<cmd>Telescope dap frames<cr>")
+keymap.set("n", "<leader>db", "<cmd>Telescope dap list_breakpoints<cr>")

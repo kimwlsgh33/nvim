@@ -1,9 +1,5 @@
 local opt = vim.opt -- for concisencess
 
--- copilot
-vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<C-j>", "copilot#Accept()", { silent = true, expr = true })
-
 -- encoding
 opt.fileencoding = "utf-8"
 opt.encoding = "utf-8"
@@ -56,3 +52,11 @@ opt.mouse = "a" -- Allow to use the mouse in the editor
 opt.title = true -- Show file title
 opt.wildmenu = true -- Show a more advance menu
 -- opt.cc = 80 -- Show at 80 column a border for good code style
+
+-- copilot
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-j>", "copilot#Accept()", { silent = true, expr = true })
+
+-- dap
+-- vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
+-- vim.fn.sign_define("DapStopped", { text = "⭐️", texthl = "", linehl = "", numhl = "" })
