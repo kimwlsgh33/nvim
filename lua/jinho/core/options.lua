@@ -57,6 +57,7 @@ opt.wildmenu = true -- Show a more advance menu
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<C-j>", "copilot#Accept()", { silent = true, expr = true })
 
--- dap
--- vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
--- vim.fn.sign_define("DapStopped", { text = "⭐️", texthl = "", linehl = "", numhl = "" })
+-- fold
+-- opt.foldenable = true
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"

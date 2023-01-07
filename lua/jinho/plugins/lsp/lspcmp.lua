@@ -41,11 +41,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     bufmap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
     bufmap("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>")
     bufmap("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>")
-    bufmap("x", "<F4>", "<cmd>lua vim.lsp.buf.range_code_action()<cr>")
+    bufmap("x", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>")
     bufmap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
     bufmap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
     bufmap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>")
-    bufmap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format { async = true }<cr>")
+    -- bufmap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format { async = true }<cr>")
   end,
 })
 
@@ -78,8 +78,8 @@ vim.diagnostic.config({
 })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+-- vim.lsp.handlers["textDocument/codeAction"] = vim.lsp.with(vim.lsp.handlers.code_action, { border = "rounded" })
 
 ---
 -- LSP config
@@ -105,7 +105,7 @@ lspconfig.sumneko_lua.setup({})
 lspconfig.pyright.setup({})
 -- lspconfig.dartls.setup({})
 
-vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]])
+vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format({async = true})]])
 ---
 -- Autocomplete
 ---

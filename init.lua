@@ -16,18 +16,20 @@ require("jinho.plugins.bufferline")
 require("jinho.plugins.toggleterm")
 require("jinho.plugins.flutter-tools")
 require("jinho.plugins.nvim-dap")
+require("jinho.plugins.ufo")
+
 
 local has = function(x)
-	return vim.fn.has(x) == 1
+  return vim.fn.has(x) == 1
 end
 
 local is_mac = has("macunix")
 local is_win = has("win32")
 
 if is_mac then
-	require("jinho.macos")
+  require("jinho.macos")
 end
 
 if is_win then
-	require("jinho.windows")
+  require("jinho.windows")
 end

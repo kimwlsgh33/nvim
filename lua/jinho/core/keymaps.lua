@@ -42,7 +42,7 @@ keymap.set("n", "<leader>lg", "<cmd>Telescope live_grep<cr>") -- find string in 
 keymap.set("n", "<leader>fg", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
-keymap.set("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>") -- list recently opened files
+-- keymap.set("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>") -- list recently opened files
 keymap.set("n", "<leader>ft", "<cmd>Telescope tags<cr>") -- list tags in current working directory
 keymap.set("n", "<leader>od", "<cmd>e ~/.config/nvim/init.lua<cr>") -- open init.lua
 
@@ -65,3 +65,9 @@ keymap.set("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>")
 keymap.set("n", "<leader>de", "<cmd>lua require'dap'.set_exception_breakpoints({'all'})<cr>")
 keymap.set("n", "<leader>df", "<cmd>Telescope dap frames<cr>")
 keymap.set("n", "<leader>db", "<cmd>Telescope dap list_breakpoints<cr>")
+
+-- flutter
+keymap.set("n", "<leader>fr", "<cmd>FlutterRun<cr>")
+keymap.set("n", "<leader>fe", "<cmd>FlutterEmulators<cr>")
+keymap.set("n", "<leader>fd", "<cmd>FlutterDevices<cr>")
+keymap.set("n", "<leader>fo", "<cmd>FlutterOutlineToggle<cr>")
