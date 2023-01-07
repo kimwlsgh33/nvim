@@ -24,9 +24,8 @@ require("flutter-tools").setup({
     settings = {
       showTodos = true,
       completeFunctionCalls = true,
-      fixAll = {
-        enabled = true,
-      },
+      renameFilesWithClasses = "prompt", -- "always"
+      enableSnippets = true,
     },
   },
 })
