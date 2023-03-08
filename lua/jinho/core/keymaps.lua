@@ -22,11 +22,23 @@ keymap.set("n", "<leader>sx", ":close<CR>") -- close current split windows
 -- keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 -- keymap.set("n", "<leader>tn", ":tabn<CR>") -- go to next tab
 -- keymap.set("n", "<leader>tp", ":tabp<CR>") -- go to previous tab
+-- keymap.set("n", "<leader>tn", ":bnext<CR>")
+-- keymap.set("n", "<leader>tp", ":bprevious<CR>")
+
+---
+-- Tabline, BufferLine
+---
 keymap.set("n", "<leader>cr", ":BufferLineCloseRight<CR>") -- close right tab
 keymap.set("n", "<leader>cl", ":BufferLineCloseLeft<CR>") -- close left tab
 keymap.set("n", "<leader>tx", ":BufferLinePickClose<CR>") -- close current tab
-keymap.set("n", "<leader>tn", ":bnext<CR>")
-keymap.set("n", "<leader>tp", ":bprevious<CR>")
+keymap.set("n", "<leader>to", ":BufferLinePick<CR>") -- open new tab
+keymap.set("n", "<leader>tn", ":BufferLineCycleNext<CR>") -- go to next tab
+keymap.set("n", "<leader>tp", ":BufferLineCyclePrev<CR>") -- go to previous tab
+keymap.set("n", "<leader>tmn", ":BufferLineMoveNext<CR>") -- move to next tab
+keymap.set("n", "<leader>tmp", ":BufferLineMovePrev<CR>") -- move to previous tab
+keymap.set("n", "<leader>tc", ":BufferLineSortByDirectory<CR>") -- sort by directory
+keymap.set("n", "<leader>ts", ":BufferLineSortByExtension<CR>") -- sort by extension
+keymap.set("n", "<leader>p", ":BufferLineTogglePin<CR>") -- pin/unpin tab
 
 -- plugins keymaps
 keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>")
@@ -72,3 +84,6 @@ keymap.set("n", "<leader>fe", "<cmd>FlutterEmulators<cr>")
 keymap.set("n", "<leader>fd", "<cmd>FlutterDevices<cr>")
 keymap.set("n", "<leader>fo", "<cmd>FlutterOutlineToggle<cr>")
 keymap.set("n", "<leader>dv", "<cmd>FlutterVisualDebug<cr>")
+keymap.set("n", "<leader>rr", "<cmd>FlutterRestart<cr>")
+keymap.set("n", "<leader>lc", "<cmd>FlutterLogClear<cr>")
+keymap.set("n", "<leader>fq", "<cmd>FlutterQuit<cr>")

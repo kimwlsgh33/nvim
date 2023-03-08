@@ -35,6 +35,8 @@ null_ls.setup({
 		formatting.autopep8,
 		-- dart formatter
 		formatting.dart_format,
+    -- c/c++ formatter
+    formatting.clang_format,
 	},
 	-- you can reuse a shared lspconfig on_attach callback here
 	on_attach = function(client, bufnr)

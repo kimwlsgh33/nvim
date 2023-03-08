@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     bufmap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
     bufmap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
     bufmap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>")
-    -- bufmap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format { async = true }<cr>")
+    bufmap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format { async = true }<cr>")
   end,
 })
 
@@ -101,11 +101,11 @@ vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").
 lspconfig.tsserver.setup({})
 lspconfig.html.setup({})
 lspconfig.cssls.setup({})
-lspconfig.sumneko_lua.setup({})
 lspconfig.pyright.setup({})
+lspconfig.clangd.setup({})
 -- lspconfig.dartls.setup({})
 
-vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format({async = true})]])
+-- vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format({async = true})]])
 ---
 -- Autocomplete
 ---

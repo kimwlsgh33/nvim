@@ -1,5 +1,4 @@
 require("jinho.plugins")
-require("jinho.core.options")
 require("jinho.core.keymaps")
 require("jinho.plugins.dashboard")
 require("jinho.plugins.comment")
@@ -16,7 +15,8 @@ require("jinho.plugins.bufferline")
 require("jinho.plugins.toggleterm")
 require("jinho.plugins.flutter-tools")
 require("jinho.plugins.nvim-dap")
-require("jinho.plugins.ufo")
+-- require("jinho.plugins.ufo")
+require("jinho.core.options")
 
 
 local has = function(x)

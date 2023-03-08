@@ -10,8 +10,8 @@ require("flutter-tools").setup({
     enabled = true,
   },
   closing_tags = {
-    highlight = "ErrorMsg",
-    prefix = "==> ",
+    highlight = "comment",
+    prefix = "<== ",
     enabled = true,
   },
   dev_log = {
@@ -29,3 +29,4 @@ require("flutter-tools").setup({
     },
   },
 })
+
