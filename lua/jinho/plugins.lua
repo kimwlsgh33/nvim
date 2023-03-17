@@ -58,10 +58,6 @@ return packer.startup(function(use)
   -- toggle terminal
   use("akinsho/toggleterm.nvim")
 
-  -- file explorer
-  -- use("nvim-tree/nvim-tree.lua")
-  -- vs-code like icons
-  -- use("nvim-tree/nvim-web-devicons")
   use({
     "nvim-tree/nvim-tree.lua",
     requires = {
@@ -110,6 +106,7 @@ return packer.startup(function(use)
   use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
   use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
   use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
+  use("simrat39/rust-tools.nvim") -- rust tools
 
   -- debugging
   use("mfussenegger/nvim-dap")
@@ -131,8 +128,6 @@ return packer.startup(function(use)
   -- git integration
   use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
-  -- coc
-  -- use({ "neoclide/coc.nvim", branch = "release" })
   use("github/copilot.vim")
 
   use("smolck/command-completion.nvim")

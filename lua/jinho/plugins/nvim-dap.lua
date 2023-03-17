@@ -30,6 +30,9 @@ dap.configurations.dart = {
 	},
 }
 
+-- rust
+
+
 icons = {
 	pause = "",
 	play = "",

@@ -1,25 +1,3 @@
---[[
-  blogpost:
-  https://vonheikemen.github.io/devlog/tools/setup-nvim-lspconfig-plus-nvim-cmp/
-
-  Dependencies:
-  LSP:
-  https://github.com/neovim/nvim-lspconfig
-  https://github.com/williamboman/mason.nvim             (optional)
-  https://github.com/williamboman/mason-lspconfig.nvim   (optional)
-
-  Completion:
-  https://github.com/hrsh7th/nvim-cmp
-  https://github.com/hrsh7th/cmp-nvim-lsp
-  https://github.com/hrsh7th/cmp-buffer
-  https://github.com/hrsh7th/cmp-path
-  https://github.com/saadparwaiz1/cmp_luasnip
-  
-  Snippets:
-  https://github.com/L3MON4D3/LuaSnip
-  https://github.com/rafamadriz/friendly-snippets
-]]
-
 ---
 -- Keybindings
 ---
@@ -92,17 +70,32 @@ local lspconfig = require("lspconfig")
 local lsp_defaults = lspconfig.util.default_config
 
 lsp_defaults.capabilities =
-vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+    vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 ---
 -- LSP servers
 ---
 
 lspconfig.tsserver.setup({})
-lspconfig.html.setup({})
-lspconfig.cssls.setup({})
-lspconfig.pyright.setup({})
-lspconfig.clangd.setup({})
+lspconfig.rust_analyzer.setup({
+  cmd = { "rust-analyzer", "run" },
+})
+-- lspconfig.html.setup({})
+-- lspconfig.cssls.setup({})
+-- lspconfig.pyright.setup({})
+-- lspconfig.clangd.setup({})
+-- lspconfig.eslint.setup({
+--   rootPatterns = {
+--     ".eslintrc.js",
+--     ".eslintrc.json",
+--     ".eslintrc.yaml",
+--     ".eslintrc.yml",
+--     "package.json"
+--   },
+-- })
+-- lspconfig.lua_ls.setup({})
+-- lspconfig.jsonls.setup({})
+-- lspconfig.
 -- lspconfig.dartls.setup({})
 
 -- vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format({async = true})]])
@@ -155,16 +148,12 @@ cmp.setup({
   mapping = {
     ["<Up>"] = cmp.mapping.select_prev_item(select_opts),
     ["<Down>"] = cmp.mapping.select_next_item(select_opts),
-
     ["<C-p>"] = cmp.mapping.select_prev_item(select_opts),
     ["<C-n>"] = cmp.mapping.select_next_item(select_opts),
-
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
-
     ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
-
     ["<C-d>"] = cmp.mapping(function(fallback)
       if luasnip.jumpable(1) then
         luasnip.jump(1)
@@ -172,7 +161,6 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-
     ["<C-b>"] = cmp.mapping(function(fallback)
       if luasnip.jumpable(-1) then
         luasnip.jump(-1)
@@ -180,7 +168,6 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-
     ["<Tab>"] = cmp.mapping(function(fallback)
       local col = vim.fn.col(".") - 1
 
@@ -192,7 +179,6 @@ cmp.setup({
         cmp.complete()
       end
     end, { "i", "s" }),
-
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item(select_opts)
